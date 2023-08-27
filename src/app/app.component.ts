@@ -11,6 +11,9 @@ export class AppComponent {
   public logs: number[] = [];
   public counter = 0;
 
+  public oddNumbers: number[] = [];
+  public evenNumbers: number[] = [];
+
   onResetUsername() {
     this.username = '';
   }
@@ -19,5 +22,13 @@ export class AppComponent {
     this.displayDetails = !this.displayDetails;
     this.counter++;
     this.logs.push(this.counter);
+  }
+
+  onTimerEventFire(number: number) {
+    if(number % 2) {
+      this.oddNumbers.push(number);
+    } else {
+      this.evenNumbers.push(number);
+    }
   }
 }
