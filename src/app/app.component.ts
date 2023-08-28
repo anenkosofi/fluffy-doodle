@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { UsersService } from './services/users.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +16,14 @@ export class AppComponent {
   public oddNumbers: number[] = [];
   public evenNumbers: number[] = [];
 
+  public active: string[];
+  public inactive: string[];
+
+  constructor(private UsersService: UsersService) {
+    this.active = this.UsersService.active;
+    this.inactive = this.UsersService.inactive;
+  }
+
   onResetUsername() {
     this.username = '';
   }
@@ -25,10 +35,18 @@ export class AppComponent {
   }
 
   onTimerEventFire(number: number) {
-    if(number % 2) {
+    if (number % 2) {
       this.oddNumbers.push(number);
     } else {
       this.evenNumbers.push(number);
     }
+  }
+
+  setActiveUser(index: number) {
+    this.UsersService.setActiveUsers(index);
+  }
+
+  setInactiveUser(index: number) {
+    this.UsersService.setInactiveUsers(index);
   }
 }

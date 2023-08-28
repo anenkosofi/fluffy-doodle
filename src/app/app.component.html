@@ -18,4 +18,17 @@
   <app-game-control (timerEvent)="onTimerEventFire($event)"></app-game-control>
   <app-odd *ngFor="let oddNumber of oddNumbers" [number]="oddNumber"></app-odd>
   <app-even *ngFor="let evenNumber of evenNumbers" [number]="evenNumber"></app-even>
+  <div>
+    <div>
+      <h2>Active Users</h2>
+      <app-user-item *ngFor="let user of active; let i = index" [user]="user" [adjective]="'inactive'"
+        (click)="setInactiveUser(i)">
+      </app-user-item>
+    </div>
+    <div>
+      <h2>Inactive Users</h2>
+      <app-user-item *ngFor="let user of inactive; let i = index" [user]="user" [adjective]="'active'"
+        (click)="setActiveUser(i)"></app-user-item>
+    </div>
+  </div>
 </div>
